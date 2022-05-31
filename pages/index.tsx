@@ -5,7 +5,7 @@ import Feed from '../components/Feed'
 import PostBox from '../components/PostBox'
 import SubredditRow from '../components/SubredditRow'
 import { GET_SUBREDDITS_WITH_LIMIT } from '../graphql/queries'
-
+//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
 const Home: NextPage = () => {
   const {data} = useQuery(GET_SUBREDDITS_WITH_LIMIT,{
     variables: {
