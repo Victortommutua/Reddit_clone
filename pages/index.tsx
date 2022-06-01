@@ -5,14 +5,15 @@ import Feed from '../components/Feed'
 import PostBox from '../components/PostBox'
 import SubredditRow from '../components/SubredditRow'
 import { GET_SUBREDDITS_WITH_LIMIT } from '../graphql/queries'
-//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
+//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
 const Home: NextPage = () => {
-  const {data} = useQuery(GET_SUBREDDITS_WITH_LIMIT,{
+  const { data } = useQuery(GET_SUBREDDITS_WITH_LIMIT,{
     variables: {
       limit: 10,
+
     },
   })
-  const subreddit: Subreddit[]= data?.SubredditListLimit
+  const subreddits: Subreddit[] = data?.getSubredditListLimit
   return (
     <div className="my-7 max-w-5xl mx-auto">
       <Head>
@@ -27,18 +28,14 @@ const Home: NextPage = () => {
         <div className='sticky top-36 mx-5 mt-5 hidden h-fit min-w-[300px]
         rounded-md border border-gray-300 bg-white lg:inline'>
           <p className='text-md mb-1 p-4 pb-3 font-bold'>Top Communities</p>
-          <div>
-            {subreddit?.map((subreddit, i) => {
+          <div className=''>
+            {subreddits?.map((subreddit, i) => {
               <SubredditRow
               key={subreddit.id}
               topic={subreddit.topic}
               index={i}
               />
             })}
-          </div>
-          <div>
-            {/* list subreddits */}
-
           </div>
         </div>
       </div>

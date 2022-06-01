@@ -51,8 +51,7 @@ function Post({post}: Props) {
   const displayVotes = (data: any) => {
     const votes: Vote[] = data?.getVotesByPostId
     const displayNumber = votes?.reduce(
-      (total, vote) => (vote.upvote ? (total +=1 ) :
-      (total -=1)), 
+      (total, vote) => (vote.upvote ? (total +=1 ) : (total -=1)),
       0
       )
       if(votes?.length === 0)return 0
@@ -63,7 +62,7 @@ function Post({post}: Props) {
   }
   useEffect(() => {
     const votes: Vote[]= data?.getVotesByPostId;
-    const vote = votes?.find(vote => vote.username === session?.user?.name
+    const vote = votes?.find(vote => vote.username == session?.user?.name
       )?.upvote
       setVote(vote)
   },[data])
@@ -117,7 +116,7 @@ if(!post)return(
           <div className='flex space-x-4 text-gray-400'>
             <div className='postButtons'>
               <ChatAltIcon className='h-6 w-6'/>
-              <p className='hidden sm:inline'>{post.comments.length} Comments</p>
+              <p className=''>{post.comments.length} Comments</p>
             </div>
             <div className='postButtons'>
               <GiftIcon className='h-6 w-6'/>

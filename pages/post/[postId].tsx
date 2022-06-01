@@ -16,16 +16,16 @@ type FormData ={
 
 function PostPage() {
     const router = useRouter();
-    const { data: session} = useSession()
-    const [addComment] = useMutation(ADD_COMMENT, {
-      refetchQueries: [GET_POST_BY_POST_ID, 'getPostListByPostId'],
-    })
     const { data } = useQuery(GET_POST_BY_POST_ID,{
         variables: {
             post_id: router.query.postId,
         },
     })
     const post: Post = data?.getPostListByPostId
+    const { data: session} = useSession()
+    const [addComment] = useMutation(ADD_COMMENT, {
+      refetchQueries: [GET_POST_BY_POST_ID, 'getPostListByPostId'],
+    })
     const { 
       register, 
       setValue,
@@ -96,7 +96,7 @@ function PostPage() {
                     {comment.username}
                     </span>
                   {' '}
-                  . <Timeago date={comment.created_at}/>
+                  . <TimeAgo date={comment.created_at}/>
                 </p>
                 <p className=''>{comment.text}</p>
               </div>

@@ -58,6 +58,7 @@ type Query {
       type: "postgresql"
       query: """
       select * from "comment" where "post_id" = $1
+      order by "comment"."created_at" desc
       """
       configuration: "postgresql_config"
     )
@@ -147,8 +148,9 @@ type Query {
     getPostListByPostId(post_id: ID!): Post
     @dbquery(
       type: "postgresql"
+      schema: "public"
       query: """
-      select * "post"
+      select * from "post"
       where "post"."id" = $1
       """
       configuration: "postgresql_config"
@@ -165,7 +167,7 @@ type Query {
       type: "postgresql"
       schema: "public"
       query: """
-      select * from "subreddit" where "topic" = $1
+      select * from "subreddit" where "topic" = $1s
       """
       configuration: "postgresql_config"
     )

@@ -4,17 +4,23 @@ import {
 } from "@heroicons/react/outline"
 import Avatar from './Avatar'
 import Link from 'next/link'
+import { Jelly } from '@uiball/loaders'
 type Props = {
-    topic: String
+    topic: string
     index: number
 }
 function SubredditRow({index, topic}: Props) {
-    //console.log('index', index)
+  if(!topic)return(
+    <div className='flex w-full items-center justify-center p-10 text-xl'>
+      <Jelly size={50} color='#FF4501'/>
+    </div>
+  )
+    console.log('topic', topic)
   return (
     <div className='flex items-center space-x-2 border-t bg-white px-4 
     py-2 last:rounded-b'>
       <p>{index + 1}</p>
-      <ChevronUpIcon className='h-6 w-4 flex-shrink-0 text-green-400'/>
+      <ChevronUpIcon className='h-4 w-4 flex-shrink-0 text-green-400'/>
       <Avatar seed={`/subreddit/${topic}`}/>
       <p className='flex-1 truncate'>r/{topic}</p>
       <Link href={`subreddit/${topic}`}>
